@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peer Help - MiCamp</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/features.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <div class="logo-icon">🎓</div>
+                <a href="../index.html" style="text-decoration: none;"><span class="logo-text">MICAMP</span></a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="../index.html#features">Features</a></li>
+                <li><a href="login.html" class="btn-login">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="header-icon">🤝</div>
+            <h1>Peer Help / Mentor System</h1>
+            <p>Get academic help from seniors and teachers</p>
+        </div>
+    </section>
+
+    <!-- Action Buttons -->
+    <section class="action-section">
+        <div class="container">
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="document.getElementById('askQuestionModal').style.display='block'">
+                    Ask a Question
+                </button>
+                <button class="btn btn-secondary">
+                    Become a Mentor
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-bar">
+                <select class="filter-select">
+                    <option value="all">All Subjects</option>
+                    <option value="dsa">Data Structures & Algorithms</option>
+                    <option value="dbms">Database Management Systems</option>
+                    <option value="os">Operating Systems</option>
+                    <option value="cn">Computer Networks</option>
+                    <option value="web">Web Development</option>
+                    <option value="math">Mathematics</option>
+                    <option value="physics">Physics</option>
+                    <option value="other">Other</option>
+                </select>
+                <select class="filter-select">
+                    <option value="all">All Status</option>
+                    <option value="unanswered">Unanswered</option>
+                    <option value="answered">Answered</option>
+                    <option value="solved">Solved</option>
+                </select>
+                <input type="text" class="search-input" placeholder="Search questions...">
+            </div>
+        </div>
+    </section>
+
+    <!-- Questions Feed -->
+    <section class="items-section">
+        <div class="container">
+            <h2>Recent Questions</h2>
+            <div class="questions-list">
+                <!-- Sample Question 1 -->
+                <div class="question-card">
+                    <div class="question-header">
+                        <div class="user-info">
+                            <div class="user-avatar">👨‍🎓</div>
+                            <div>
+                                <h4>Rahul Verma</h4>
+                                <p>1RN23CS201 • 2nd Year CSE</p>
+                            </div>
+                        </div>
+                        <span class="question-tag">DSA</span>
+                    </div>
+                    <div class="question-body">
+                        <h3>How to implement Binary Search Tree in C++?</h3>
+                        <p>I'm having trouble understanding how to implement insert and delete operations in BST. Can someone explain with code examples?</p>
+                        <div class="question-meta">
+                            <span>🕐 2 hours ago</span>
+                            <span>💬 5 answers</span>
+                            <span>👍 12 helpful</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary btn-small">View Answers</button>
+                </div>
+
+                <!-- Sample Question 2 -->
+                <div class="question-card answered">
+                    <div class="question-header">
+                        <div class="user-info">
+                            <div class="user-avatar">👩‍🎓</div>
+                            <div>
+                                <h4>Sneha Patel</h4>
+                                <p>1RN23CS145 • 3rd Year CSE</p>
+                            </div>
+                        </div>
+                        <span class="question-tag">DBMS</span>
+                    </div>
+                    <div class="question-body">
+                        <h3>Difference between Primary Key and Unique Key?</h3>
+                        <p>What is the main difference between primary key and unique key constraints in SQL?</p>
+                        <div class="question-meta">
+                            <span>🕐 5 hours ago</span>
+                            <span>💬 8 answers</span>
+                            <span>👍 25 helpful</span>
+                            <span class="solved-badge">✓ Solved</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary btn-small">View Answers</button>
+                </div>
+
+                <!-- Sample Question 3 -->
+                <div class="question-card">
+                    <div class="question-header">
+                        <div class="user-info">
+                            <div class="user-avatar">👨‍🎓</div>
+                            <div>
+                                <h4>Karthik Rao</h4>
+                                <p>1RN23CS089 • 1st Year CSE</p>
+                            </div>
+                        </div>
+                        <span class="question-tag">Programming</span>
+                    </div>
+                    <div class="question-body">
+                        <h3>Best resources to learn Python for beginners?</h3>
+                        <p>I want to start learning Python. What are the best free resources and projects for complete beginners?</p>
+                        <div class="question-meta">
+                            <span>🕐 1 day ago</span>
+                            <span>💬 15 answers</span>
+                            <span>👍 40 helpful</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary btn-small">View Answers</button>
+                </div>
+
+                <!-- Sample Question 4 -->
+                <div class="question-card">
+                    <div class="question-header">
+                        <div class="user-info">
+                            <div class="user-avatar">👩‍🎓</div>
+                            <div>
+                                <h4>Meera Krishna</h4>
+                                <p>1RN23CS131 • 2nd Year CSE</p>
+                            </div>
+                        </div>
+                        <span class="question-tag">Web Dev</span>
+                    </div>
+                    <div class="question-body">
+                        <h3>React vs Angular - Which one to learn first?</h3>
+                        <p>I want to get into frontend development. Should I learn React or Angular first? What are the pros and cons?</p>
+                        <div class="question-meta">
+                            <span>🕐 3 days ago</span>
+                            <span>💬 20 answers</span>
+                            <span>👍 35 helpful</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary btn-small">View Answers</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ask Question Modal -->
+    <div id="askQuestionModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="document.getElementById('askQuestionModal').style.display='none'">&times;</span>
+            <h2>Ask a Question</h2>
+            <form class="report-form">
+                <div class="form-group">
+                    <label>Subject/Topic</label>
+                    <select required>
+                        <option value="">Select Subject</option>
+                        <option value="dsa">Data Structures & Algorithms</option>
+                        <option value="dbms">Database Management Systems</option>
+                        <option value="os">Operating Systems</option>
+                        <option value="cn">Computer Networks</option>
+                        <option value="web">Web Development</option>
+                        <option value="math">Mathematics</option>
+                        <option value="physics">Physics</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Question Title</label>
+                    <input type="text" placeholder="Brief title of your question" required>
+                </div>
+                <div class="form-group">
+                    <label>Question Details</label>
+                    <textarea placeholder="Explain your question in detail..." rows="5" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Add Code/Screenshot (Optional)</label>
+                    <input type="file" accept="image/*">
+                </div>
+                <div class="form-group">
+                    <label>Tags (comma separated)</label>
+                    <input type="text" placeholder="e.g., c++, binary-tree, recursion">
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Post Question</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo-icon">🎓</div>
+                    <span class="logo-text">MICAMP</span>
+                    <p>Where Campus Meets Technology</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 MiCamp. Built for RNSIT Community.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

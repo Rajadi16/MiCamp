@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost & Found - MiCamp</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/features.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <div class="logo-icon">🎓</div>
+                <a href="../index.html" style="text-decoration: none;"><span class="logo-text">MICAMP</span></a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="../index.html#features">Features</a></li>
+                <li><a href="login.html" class="btn-login">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="header-icon">🎒</div>
+            <h1>Lost & Found System</h1>
+            <p>Report lost items or help someone find theirs</p>
+        </div>
+    </section>
+
+    <!-- Action Buttons -->
+    <section class="action-section">
+        <div class="container">
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="document.getElementById('reportModal').style.display='block'">
+                    Report Lost Item
+                </button>
+                <button class="btn btn-secondary" onclick="document.getElementById('foundModal').style.display='block'">
+                    Report Found Item
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-bar">
+                <select class="filter-select">
+                    <option value="all">All Categories</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="books">Books & Stationery</option>
+                    <option value="accessories">Accessories</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="ids">ID Cards & Documents</option>
+                    <option value="other">Other</option>
+                </select>
+                <select class="filter-select">
+                    <option value="all">All Status</option>
+                    <option value="lost">Lost Items</option>
+                    <option value="found">Found Items</option>
+                    <option value="claimed">Claimed</option>
+                </select>
+                <input type="text" class="search-input" placeholder="Search items...">
+            </div>
+        </div>
+    </section>
+
+    <!-- Items Grid -->
+    <section class="items-section">
+        <div class="container">
+            <h2>Recent Posts</h2>
+            <div class="items-grid">
+                <!-- Sample Lost Item -->
+                <div class="item-card lost">
+                    <div class="item-status">LOST</div>
+                    <div class="item-image-placeholder">
+                        <span>📱</span>
+                    </div>
+                    <div class="item-details">
+                        <h3>Black iPhone 13</h3>
+                        <p class="item-category">Electronics</p>
+                        <p class="item-location">📍 Library, 2nd Floor</p>
+                        <p class="item-date">Lost on: 10 Nov 2025</p>
+                        <p class="item-description">Black iPhone 13 with red case. Last seen near computer section.</p>
+                        <div class="item-contact">
+                            <span>Posted by: Raj Kumar (1RN23CS123)</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-small">Contact Owner</button>
+                </div>
+
+                <!-- Sample Found Item -->
+                <div class="item-card found">
+                    <div class="item-status">FOUND</div>
+                    <div class="item-image-placeholder">
+                        <span>📓</span>
+                    </div>
+                    <div class="item-details">
+                        <h3>Blue Notebook</h3>
+                        <p class="item-category">Books & Stationery</p>
+                        <p class="item-location">📍 CSE Department</p>
+                        <p class="item-date">Found on: 12 Nov 2025</p>
+                        <p class="item-description">Blue spiral notebook with "Data Structures" written on it.</p>
+                        <div class="item-contact">
+                            <span>Posted by: Priya Sharma (1RN23CS145)</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary btn-small">Claim Item</button>
+                </div>
+
+                <!-- Sample Lost Item -->
+                <div class="item-card lost">
+                    <div class="item-status">LOST</div>
+                    <div class="item-image-placeholder">
+                        <span>🎧</span>
+                    </div>
+                    <div class="item-details">
+                        <h3>Wireless Earbuds</h3>
+                        <p class="item-category">Accessories</p>
+                        <p class="item-location">📍 Canteen Area</p>
+                        <p class="item-date">Lost on: 11 Nov 2025</p>
+                        <p class="item-description">White wireless earbuds with charging case.</p>
+                        <div class="item-contact">
+                            <span>Posted by: Aditya Singh (1RN23CS163)</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-small">Contact Owner</button>
+                </div>
+
+                <!-- Sample Found Item -->
+                <div class="item-card found">
+                    <div class="item-status">FOUND</div>
+                    <div class="item-image-placeholder">
+                        <span>🔑</span>
+                    </div>
+                    <div class="item-details">
+                        <h3>Set of Keys</h3>
+                        <p class="item-category">Other</p>
+                        <p class="item-location">📍 Parking Area</p>
+                        <p class="item-date">Found on: 13 Nov 2025</p>
+                        <p class="item-description">Set of 3 keys with blue keychain.</p>
+                        <div class="item-contact">
+                            <span>Posted by: Security Office</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary btn-small">Claim Item</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Report Lost Modal -->
+    <div id="reportModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="document.getElementById('reportModal').style.display='none'">&times;</span>
+            <h2>Report Lost Item</h2>
+            <form class="report-form">
+                <div class="form-group">
+                    <label>Item Name</label>
+                    <input type="text" placeholder="e.g., Black iPhone 13" required>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select required>
+                        <option value="">Select Category</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="books">Books & Stationery</option>
+                        <option value="accessories">Accessories</option>
+                        <option value="clothing">Clothing</option>
+                        <option value="ids">ID Cards & Documents</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Location Lost</label>
+                    <input type="text" placeholder="e.g., Library, 2nd Floor" required>
+                </div>
+                <div class="form-group">
+                    <label>Date Lost</label>
+                    <input type="date" required>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea placeholder="Detailed description of the item..." rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Upload Photo (Optional)</label>
+                    <input type="file" accept="image/*">
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Submit Report</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Report Found Modal -->
+    <div id="foundModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="document.getElementById('foundModal').style.display='none'">&times;</span>
+            <h2>Report Found Item</h2>
+            <form class="report-form">
+                <div class="form-group">
+                    <label>Item Name</label>
+                    <input type="text" placeholder="e.g., Blue Notebook" required>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select required>
+                        <option value="">Select Category</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="books">Books & Stationery</option>
+                        <option value="accessories">Accessories</option>
+                        <option value="clothing">Clothing</option>
+                        <option value="ids">ID Cards & Documents</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Location Found</label>
+                    <input type="text" placeholder="e.g., CSE Department" required>
+                </div>
+                <div class="form-group">
+                    <label>Date Found</label>
+                    <input type="date" required>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea placeholder="Detailed description of the item..." rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Upload Photo (Optional)</label>
+                    <input type="file" accept="image/*">
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Submit Report</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo-icon">🎓</div>
+                    <span class="logo-text">MICAMP</span>
+                    <p>Where Campus Meets Technology</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 MiCamp. Built for RNSIT Community.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency SOS - MiCamp</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/features.css">
+    <link rel="stylesheet" href="../css/sos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <div class="logo-icon">🎓</div>
+                <a href="../index.html" style="text-decoration: none;"><span class="logo-text">MICAMP</span></a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="../index.html#features">Features</a></li>
+                <li><a href="login.html" class="btn-login">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header emergency-header">
+        <div class="container">
+            <div class="header-icon">🚨</div>
+            <h1>Emergency SOS</h1>
+            <p>One-tap emergency alert with live location</p>
+        </div>
+    </section>
+
+    <!-- SOS Button Section -->
+    <section class="sos-main">
+        <div class="container">
+            <div class="sos-button-container">
+                <div class="sos-info">
+                    <h2>In case of emergency</h2>
+                    <p>Press and hold the button below to send an immediate alert to campus security with your live location</p>
+                </div>
+
+                <div class="sos-button-wrapper">
+                    <button class="sos-button" id="sosButton" onmousedown="startSOS()" onmouseup="cancelSOS()" ontouchstart="startSOS()" ontouchend="cancelSOS()">
+                        <span class="sos-text">SOS</span>
+                        <span class="sos-subtext">Hold for 3 seconds</span>
+                    </button>
+                    <div class="sos-progress" id="sosProgress"></div>
+                </div>
+
+                <div class="emergency-contacts">
+                    <h3>Emergency Contacts</h3>
+                    <div class="contact-grid">
+                        <a href="tel:+919876543210" class="contact-card">
+                            <div class="contact-icon">👮</div>
+                            <div class="contact-info">
+                                <h4>Campus Security</h4>
+                                <p>+91 98765 43210</p>
+                            </div>
+                        </a>
+                        <a href="tel:+919876543211" class="contact-card">
+                            <div class="contact-icon">🏥</div>
+                            <div class="contact-info">
+                                <h4>Medical Center</h4>
+                                <p>+91 98765 43211</p>
+                            </div>
+                        </a>
+                        <a href="tel:100" class="contact-card">
+                            <div class="contact-icon">🚓</div>
+                            <div class="contact-info">
+                                <h4>Police</h4>
+                                <p>100</p>
+                            </div>
+                        </a>
+                        <a href="tel:108" class="contact-card">
+                            <div class="contact-icon">🚑</div>
+                            <div class="contact-info">
+                                <h4>Ambulance</h4>
+                                <p>108</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Hold SOS Button</h3>
+                    <p>Press and hold the SOS button for 3 seconds in case of emergency</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Location Shared</h3>
+                    <p>Your exact location will be automatically shared with campus security</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Help Dispatched</h3>
+                    <p>Security team will be immediately dispatched to your location</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3>Stay Safe</h3>
+                    <p>Stay calm and wait for help to arrive. You can call emergency numbers if needed</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Safety Tips -->
+    <section class="safety-tips">
+        <div class="container">
+            <h2>Safety Tips</h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <div class="tip-icon">✓</div>
+                    <p>Always keep your phone charged</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">✓</div>
+                    <p>Enable location services for the app</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">✓</div>
+                    <p>Add emergency contacts in your phone</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">✓</div>
+                    <p>Familiarize yourself with campus safety zones</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">✓</div>
+                    <p>Inform friends/family about your schedule</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">✓</div>
+                    <p>Don't hesitate to use SOS in genuine emergencies</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOS Confirmation Modal -->
+    <div id="sosConfirmModal" class="modal">
+        <div class="modal-content sos-modal">
+            <h2>🚨 SOS Alert Sent!</h2>
+            <p>Emergency alert has been sent to campus security with your location.</p>
+            <p class="help-text">Help is on the way. Please stay calm and safe.</p>
+            <div class="modal-actions">
+                <button class="btn btn-danger" onclick="cancelAlert()">Cancel Alert</button>
+                <button class="btn btn-secondary" onclick="document.getElementById('sosConfirmModal').style.display='none'">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo-icon">🎓</div>
+                    <span class="logo-text">MICAMP</span>
+                    <p>Where Campus Meets Technology</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 MiCamp. Built for RNSIT Community.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/sos.js"></script>
+</body>
+</html>

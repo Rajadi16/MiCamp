@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canteen Pre-Order - MiCamp</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/features.css">
+    <link rel="stylesheet" href="../css/canteen.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <div class="logo-icon">🎓</div>
+                <a href="../index.html" style="text-decoration: none;"><span class="logo-text">MICAMP</span></a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="../index.html#features">Features</a></li>
+                <li><a href="login.html" class="btn-login">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="header-icon">🍔</div>
+            <h1>Canteen Menu & Pre-Order</h1>
+            <p>Skip the queue! Order your food in advance</p>
+        </div>
+    </section>
+
+    <!-- Cart Info Bar -->
+    <div class="cart-bar">
+        <div class="container">
+            <div class="cart-info">
+                <span>🛒 Cart: <span id="cartCount">0</span> items</span>
+                <span>Total: ₹<span id="cartTotal">0</span></span>
+                <button class="btn btn-primary btn-small" onclick="document.getElementById('cartModal').style.display='block'">
+                    View Cart
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu Categories -->
+    <section class="categories-section">
+        <div class="container">
+            <div class="categories-tabs">
+                <button class="category-tab active" data-category="all">All Items</button>
+                <button class="category-tab" data-category="breakfast">Breakfast</button>
+                <button class="category-tab" data-category="lunch">Lunch</button>
+                <button class="category-tab" data-category="snacks">Snacks</button>
+                <button class="category-tab" data-category="beverages">Beverages</button>
+                <button class="category-tab" data-category="desserts">Desserts</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Items -->
+    <section class="menu-section">
+        <div class="container">
+            <h2>Today's Menu</h2>
+            <div class="menu-grid">
+                <!-- Breakfast Items -->
+                <div class="menu-item" data-category="breakfast">
+                    <div class="menu-item-image">🥪</div>
+                    <div class="menu-item-content">
+                        <h3>Veg Sandwich</h3>
+                        <p>Fresh vegetables with cheese</p>
+                        <div class="menu-item-footer">
+                            <span class="price">₹40</span>
+                            <button class="btn-add" onclick="addToCart('Veg Sandwich', 40)">+ Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="breakfast">
+                    <div class="menu-item-image">🥐</div>
+                    <div class="menu-item-content">
+                        <h3>Masala Dosa</h3>
+                        <p>South Indian special with chutney</p>
+                        <div class="menu-item-footer">
+                            <span class="price">₹50</span>
+                            <button class="btn-add" onclick="addToCart('Masala Dosa', 50)">+ Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lunch Items -->
+                <div class="menu-item" data-category="lunch">
+                    <div class="menu-item-image">🍛</div>
+                    <div class="menu-item-content">
+                        <h3>Veg Thali</h3>
+                        <p>Complete meal with rice, roti, dal, sabzi</p>
+                        <div class="menu-item-footer">
+                            <span class="price">₹80</span>
+                            <button class="btn-add" onclick="addToCart('Veg Thali', 80)">+ Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="lunch">
+                    <div class="menu-item-image">🍗</div>
+                    <div class="menu-item-content">
+                        <h3>Chicken Biryani</h3>
+                        <p>Aromatic basmati rice with chicken</p>
+                        <div class="menu-item-footer">
+                            <span class="price">₹120</span>
+                            <button class="btn-add" onclick="addToCart('Chicken Biryani', 120)">+ Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Snacks -->
+                <div class="menu-item" data-category="snacks">
+                    <div class="menu-item-image">🍟</div>
+                    <div class="menu-item-content">
+                        <h3>French Fries</h3>
+                        <p>Crispy golden fries with ketchup</p>
+                        <div class="menu-item-footer">
+                            <span class="price">₹35</span>
+                            <button class="btn-add" onclick="addToCart('French Fries', 35)">+ Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="snacks">
+                    <div class="menu-item-image">🌯</div>
+                    <div class="menu-item-content">
+                        <h3>Veg Roll</h3>
+                        <p>Spicy vegetable wrap</p>
+                        <div class="menu-item-footer">
+                            <span class="price">₹45</span>
+                            <button class="btn-add" onclick="addToCart('Veg Roll', 45)">+ Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Beverages -->
+                <div class="menu-item" data-category="beverages">
+                    <div class="menu-item-image">☕</div>
+                    <div class="menu-item-content">
+                        <h3>Coffee</h3>
+                        <p>Hot brewed coffee</p>
+                        <div class="menu-item-footer">
+                            <span class="price">₹20</span>
+                            <button class="btn-add" onclick="addToCart('Coffee', 20)">+ Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="beverages">
+                    <div class="menu-item-image">🥤</div>
+                    <div class="menu-item-content">
+                        <h3>Cold Drink</h3>
+                        <p>Chilled soft drink</p>
+                        <div class="menu-item-footer">
+                            <span class="price">₹25</span>
+                            <button class="btn-add" onclick="addToCart('Cold Drink', 25)">+ Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Desserts -->
+                <div class="menu-item" data-category="desserts">
+                    <div class="menu-item-image">🍨</div>
+                    <div class="menu-item-content">
+                        <h3>Ice Cream</h3>
+                        <p>Vanilla or chocolate flavor</p>
+                        <div class="menu-item-footer">
+                            <span class="price">₹30</span>
+                            <button class="btn-add" onclick="addToCart('Ice Cream', 30)">+ Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="desserts">
+                    <div class="menu-item-image">🍰</div>
+                    <div class="menu-item-content">
+                        <h3>Pastry</h3>
+                        <p>Fresh cream pastry slice</p>
+                        <div class="menu-item-footer">
+                            <span class="price">₹40</span>
+                            <button class="btn-add" onclick="addToCart('Pastry', 40)">+ Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="document.getElementById('cartModal').style.display='none'">&times;</span>
+            <h2>Your Cart</h2>
+            <div id="cartItems" class="cart-items">
+                <p class="empty-cart">Your cart is empty</p>
+            </div>
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span>₹<span id="modalSubtotal">0</span></span>
+                </div>
+                <div class="summary-row">
+                    <span>GST (5%):</span>
+                    <span>₹<span id="modalGst">0</span></span>
+                </div>
+                <div class="summary-row total">
+                    <span><strong>Total:</strong></span>
+                    <span><strong>₹<span id="modalTotal">0</span></strong></span>
+                </div>
+            </div>
+            <div class="checkout-options">
+                <input type="text" placeholder="Pickup time (e.g., 1:30 PM)" class="pickup-time-input">
+                <textarea placeholder="Special instructions (optional)" class="special-instructions" rows="2"></textarea>
+            </div>
+            <button class="btn btn-primary btn-full" onclick="checkout()">Place Order</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo-icon">🎓</div>
+                    <span class="logo-text">MICAMP</span>
+                    <p>Where Campus Meets Technology</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 MiCamp. Built for RNSIT Community.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/canteen.js"></script>
+</body>
+</html>

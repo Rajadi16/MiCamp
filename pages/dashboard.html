@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - MiCamp</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/features.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <div class="logo-icon">🎓</div>
+                <a href="../index.html" style="text-decoration: none;"><span class="logo-text">MICAMP</span></a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                <li><a href="../index.html#features">Features</a></li>
+                <li><a href="#" onclick="logout()" class="btn-login">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="header-icon">👤</div>
+            <h1>Welcome, <span id="userName">Student</span>!</h1>
+            <p>Your MiCamp Dashboard</p>
+        </div>
+    </section>
+
+    <!-- Quick Actions -->
+    <section class="dashboard-section">
+        <div class="container">
+            <h2 class="section-title">Quick Actions</h2>
+            <div class="features-grid">
+                <a href="campus-map.html" class="feature-card">
+                    <div class="feature-icon">🗺️</div>
+                    <h3>Campus Navigation</h3>
+                    <p>Find your way around campus</p>
+                </a>
+
+                <a href="canteen.html" class="feature-card">
+                    <div class="feature-icon">🍔</div>
+                    <h3>Order Food</h3>
+                    <p>Pre-order from canteen</p>
+                </a>
+
+                <a href="lost-found.html" class="feature-card">
+                    <div class="feature-icon">🎒</div>
+                    <h3>Lost & Found</h3>
+                    <p>Report or find items</p>
+                </a>
+
+                <a href="ride-pool.html" class="feature-card">
+                    <div class="feature-icon">🚗</div>
+                    <h3>Ride Pool</h3>
+                    <p>Share rides with others</p>
+                </a>
+
+                <a href="peer-help.html" class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Get Help</h3>
+                    <p>Academic assistance</p>
+                </a>
+
+                <a href="sos.html" class="feature-card emergency-card">
+                    <div class="feature-icon">🚨</div>
+                    <h3>Emergency SOS</h3>
+                    <p>Quick emergency alert</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Activity -->
+    <section class="dashboard-section">
+        <div class="container">
+            <h2 class="section-title">Recent Activity</h2>
+            <div class="activity-list" id="activityList">
+                <div class="activity-item">
+                    <div class="activity-icon">🎓</div>
+                    <div class="activity-content">
+                        <h4>Account Created</h4>
+                        <p>Welcome to MiCamp!</p>
+                        <span class="activity-time">Just now</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Info Card -->
+    <section class="dashboard-section">
+        <div class="container">
+            <h2 class="section-title">Your Profile</h2>
+            <div class="profile-card">
+                <div class="profile-info" id="profileInfo">
+                    <p><strong>Email:</strong> <span id="userEmail">-</span></p>
+                    <p><strong>Member Since:</strong> <span id="memberSince">-</span></p>
+                </div>
+                <button class="btn btn-secondary" onclick="editProfile()">Edit Profile</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo-icon">🎓</div>
+                    <span class="logo-text">MICAMP</span>
+                    <p>Where Campus Meets Technology</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 MiCamp. Built for RNSIT Community.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        // Load user data
+        document.addEventListener('DOMContentLoaded', () => {
+            const userData = localStorage.getItem('micamp_user');
+
+            if (!userData) {
+                // Redirect to login if not logged in
+                window.location.href = 'login.html';
+                return;
+            }
+
+            const user = JSON.parse(userData);
+
+            // Update user info
+            document.getElementById('userName').textContent = user.name || user.fullname || 'Student';
+            document.getElementById('userEmail').textContent = user.email || '-';
+
+            if (user.loginTime || user.registeredAt) {
+                const date = new Date(user.loginTime || user.registeredAt);
+                document.getElementById('memberSince').textContent = date.toLocaleDateString();
+            }
+        });
+
+        function editProfile() {
+            alert('Profile editing feature coming soon!');
+        }
+    </script>
+
+    <style>
+        .dashboard-section {
+            padding: 3rem 0;
+        }
+
+        .activity-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .activity-icon {
+            font-size: 2rem;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-color);
+            border-radius: 10px;
+        }
+
+        .activity-content h4 {
+            margin: 0 0 0.5rem 0;
+            color: var(--text-color);
+        }
+
+        .activity-content p {
+            margin: 0 0 0.5rem 0;
+            color: var(--text-secondary);
+        }
+
+        .activity-time {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .profile-card {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+        }
+
+        .profile-info {
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-info p {
+            margin: 1rem 0;
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .profile-info strong {
+            color: var(--text-color);
+            min-width: 150px;
+            display: inline-block;
+        }
+    </style>
+</body>
+</html>

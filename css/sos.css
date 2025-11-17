@@ -1,0 +1,302 @@
+/* SOS Page Specific Styles */
+
+.emergency-header {
+    background: radial-gradient(circle at 50% 0%, rgba(239, 68, 68, 0.15), transparent 50%);
+}
+
+.sos-main {
+    padding: 4rem 0;
+}
+
+.sos-button-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.sos-info {
+    margin-bottom: 3rem;
+}
+
+.sos-info h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.sos-info p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+.sos-button-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 4rem;
+}
+
+.sos-button {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    border: 8px solid rgba(239, 68, 68, 0.3);
+    color: white;
+    font-size: 3rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 20px 60px rgba(239, 68, 68, 0.4);
+}
+
+.sos-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 25px 70px rgba(239, 68, 68, 0.5);
+}
+
+.sos-button:active {
+    transform: scale(0.95);
+}
+
+.sos-text {
+    font-size: 3.5rem;
+    letter-spacing: 0.1em;
+}
+
+.sos-subtext {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-top: 0.5rem;
+    opacity: 0.9;
+}
+
+.sos-progress {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+    border-radius: 50%;
+    border: 5px solid transparent;
+    border-top-color: #22c55e;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.sos-progress.active {
+    opacity: 1;
+    animation: sosProgress 3s linear;
+}
+
+@keyframes sosProgress {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.emergency-contacts {
+    margin-top: 4rem;
+}
+
+.emergency-contacts h3 {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.contact-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.contact-card:hover {
+    border-color: var(--danger-color);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(239, 68, 68, 0.2);
+}
+
+.contact-icon {
+    font-size: 3rem;
+}
+
+.contact-info h4 {
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.contact-info p {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+/* How It Works Section */
+.how-it-works {
+    padding: 4rem 0;
+    background: var(--card-bg);
+}
+
+.how-it-works h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.step-card {
+    text-align: center;
+    padding: 2rem;
+}
+
+.step-number {
+    width: 60px;
+    height: 60px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 auto 1.5rem;
+}
+
+.step-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.step-card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Safety Tips */
+.safety-tips {
+    padding: 4rem 0;
+}
+
+.safety-tips h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+}
+
+.tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.tip-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.tip-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(16, 185, 129, 0.2);
+    color: var(--success-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.tip-card p {
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* SOS Modal */
+.sos-modal {
+    text-align: center;
+}
+
+.sos-modal h2 {
+    color: var(--danger-color);
+    margin-bottom: 1rem;
+}
+
+.sos-modal p {
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.help-text {
+    font-size: 1.1rem;
+    color: var(--text-primary) !important;
+    font-weight: 600;
+    margin-bottom: 2rem !important;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.btn-danger {
+    background: var(--danger-color);
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #dc2626;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sos-button {
+        width: 200px;
+        height: 200px;
+    }
+
+    .sos-text {
+        font-size: 2.5rem;
+    }
+
+    .contact-grid,
+    .steps-grid,
+    .tips-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-actions {
+        flex-direction: column;
+    }
+}
