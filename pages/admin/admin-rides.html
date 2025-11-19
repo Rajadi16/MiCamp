@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ride Pool Management - MiCamp Admin</title>
+    <link rel="stylesheet" href="../../css/admin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="admin-navbar">
+        <div class="nav-content">
+            <div class="admin-logo">
+                <span class="admin-logo-icon">🎓</span>
+                <span>MICAMP ADMIN</span>
+            </div>
+            <div class="admin-nav-right">
+                <span class="admin-name" id="admin-name">Administrator</span>
+                <button class="admin-logout-btn" onclick="adminLogout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <aside class="admin-sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="admin-dashboard.html"><span class="icon">📊</span><span>Dashboard</span></a></li>
+                <li><a href="admin-users.html"><span class="icon">👥</span><span>Users</span></a></li>
+                <li><a href="admin-lost-found.html"><span class="icon">🎒</span><span>Lost & Found</span></a></li>
+                <li><a href="admin-sos.html"><span class="icon">🚨</span><span>SOS Alerts</span></a></li>
+                <li><a href="admin-rides.html" class="active"><span class="icon">🚗</span><span>Ride Pool</span></a></li>
+                <li><a href="admin-peer-help.html"><span class="icon">🤝</span><span>Peer Help</span></a></li>
+                <li><a href="admin-canteen.html"><span class="icon">🍔</span><span>Canteen</span></a></li>
+                <li><a href="admin-campus-map.html"><span class="icon">🗺️</span><span>Campus Map</span></a></li>
+            </ul>
+        </aside>
+
+        <main class="admin-main">
+            <div class="admin-header">
+                <h1>Ride Pool Management</h1>
+                <p>Manage ride sharing posts</p>
+            </div>
+
+            <div class="filters">
+                <div class="search-box">
+                    <input type="text" id="search-rides" class="form-input" placeholder="🔍 Search by location or driver...">
+                </div>
+                <select id="filter-status" class="form-select" style="width: 200px;">
+                    <option value="all">All Status</option>
+                    <option value="active">Active</option>
+                    <option value="completed">Completed</option>
+                    <option value="cancelled">Cancelled</option>
+                </select>
+            </div>
+
+            <div class="data-table-container">
+                <div class="data-table-header">
+                    <h2>All Rides (<span id="rides-count">0</span>)</h2>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Driver</th>
+                            <th>From → To</th>
+                            <th>Date/Time</th>
+                            <th>Vehicle</th>
+                            <th>Seats</th>
+                            <th>Price</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rides-table-body">
+                        <tr><td colspan="8" class="empty-state"><div class="empty-state-icon">🚗</div><h3>No Rides Found</h3></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script src="../../js/admin-auth.js"></script>
+    <script>
+        updateAdminNavbar();
+        let allRides = JSON.parse(localStorage.getItem('micamp_rides') || '[]');
+
+        if (allRides.length === 0) {
+            allRides = [{id: 1, driver: 'Sample User', from: 'Yelahanka', to: 'RNSIT', date: new Date().toISOString().split('T')[0], time: '09:00', vehicle: 'Car', seats: 3, price: 50, status: 'active'}];
+        }
+
+        function renderRides(rides) {
+            const tbody = document.getElementById('rides-table-body');
+            document.getElementById('rides-count').textContent = rides.length;
+            if (rides.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 3rem; color: #6b7280;"><div style="font-size: 3rem; margin-bottom: 1rem;">🚗</div><h3>No Rides Found</h3></td></tr>';
+                return;
+            }
+            tbody.innerHTML = rides.map(ride => `
+                <tr>
+                    <td><strong>${ride.driver}</strong></td>
+                    <td>${ride.from} → ${ride.to}</td>
+                    <td>${ride.date} ${ride.time}</td>
+                    <td>${ride.vehicle}</td>
+                    <td>${ride.seats}</td>
+                    <td>₹${ride.price}</td>
+                    <td><span class="badge badge-${ride.status === 'active' ? 'success' : ride.status === 'completed' ? 'info' : 'danger'}">${ride.status}</span></td>
+                    <td><button class="btn btn-danger btn-small" onclick="deleteRide(${ride.id})">Delete</button></td>
+                </tr>
+            `).join('');
+        }
+
+        function filterRides() {
+            const search = document.getElementById('search-rides').value.toLowerCase();
+            const status = document.getElementById('filter-status').value;
+            let filtered = allRides.filter(r =>
+                (r.from?.toLowerCase().includes(search) || r.to?.toLowerCase().includes(search) || r.driver?.toLowerCase().includes(search)) &&
+                (status === 'all' || r.status === status)
+            );
+            renderRides(filtered);
+        }
+
+        function deleteRide(id) {
+            if (!confirm('Delete this ride?')) return;
+            allRides = allRides.filter(r => r.id !== id);
+            localStorage.setItem('micamp_rides', JSON.stringify(allRides));
+            showNotification('Ride deleted', 'success');
+            filterRides();
+        }
+
+        document.getElementById('search-rides').addEventListener('input', filterRides);
+        document.getElementById('filter-status').addEventListener('change', filterRides);
+        renderRides(allRides);
+    </script>
+</body>
+</html>

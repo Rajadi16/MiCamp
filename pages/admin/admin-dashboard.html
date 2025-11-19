@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - MiCamp</title>
+    <link rel="stylesheet" href="../../css/admin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Admin Navbar -->
+    <nav class="admin-navbar">
+        <div class="nav-content">
+            <div class="admin-logo">
+                <span class="admin-logo-icon">🎓</span>
+                <span>MICAMP ADMIN</span>
+            </div>
+            <div class="admin-nav-right">
+                <span class="admin-name" id="admin-name">Administrator</span>
+                <button class="admin-logout-btn" onclick="adminLogout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Container -->
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="admin-dashboard.html" class="active">
+                        <span class="icon">📊</span>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin-users.html">
+                        <span class="icon">👥</span>
+                        <span>Users</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin-lost-found.html">
+                        <span class="icon">🎒</span>
+                        <span>Lost & Found</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin-sos.html">
+                        <span class="icon">🚨</span>
+                        <span>SOS Alerts</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin-rides.html">
+                        <span class="icon">🚗</span>
+                        <span>Ride Pool</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin-peer-help.html">
+                        <span class="icon">🤝</span>
+                        <span>Peer Help</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin-canteen.html">
+                        <span class="icon">🍔</span>
+                        <span>Canteen</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin-campus-map.html">
+                        <span class="icon">🗺️</span>
+                        <span>Campus Map</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <div class="admin-header">
+                <h1>Dashboard Overview</h1>
+                <p>Welcome to MiCamp Administration Portal</p>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <span class="stat-card-title">Total Users</span>
+                        <span class="stat-card-icon">👥</span>
+                    </div>
+                    <div class="stat-card-value" id="stat-users">0</div>
+                    <div class="stat-card-change positive" id="stat-users-change">+0 this week</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <span class="stat-card-title">Lost & Found</span>
+                        <span class="stat-card-icon">🎒</span>
+                    </div>
+                    <div class="stat-card-value" id="stat-lost-found">0</div>
+                    <div class="stat-card-change" id="stat-lost-found-change">0 active items</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <span class="stat-card-title">SOS Alerts</span>
+                        <span class="stat-card-icon">🚨</span>
+                    </div>
+                    <div class="stat-card-value" id="stat-sos">0</div>
+                    <div class="stat-card-change negative" id="stat-sos-change">0 pending</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <span class="stat-card-title">Active Rides</span>
+                        <span class="stat-card-icon">🚗</span>
+                    </div>
+                    <div class="stat-card-value" id="stat-rides">0</div>
+                    <div class="stat-card-change" id="stat-rides-change">0 available</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <span class="stat-card-title">Peer Questions</span>
+                        <span class="stat-card-icon">🤝</span>
+                    </div>
+                    <div class="stat-card-value" id="stat-questions">0</div>
+                    <div class="stat-card-change" id="stat-questions-change">0 unanswered</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <span class="stat-card-title">Canteen Orders</span>
+                        <span class="stat-card-icon">🍔</span>
+                    </div>
+                    <div class="stat-card-value" id="stat-orders">0</div>
+                    <div class="stat-card-change positive" id="stat-orders-change">₹0 today</div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="data-table-container">
+                <div class="data-table-header">
+                    <h2>Recent Activity</h2>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Activity Type</th>
+                            <th>User</th>
+                            <th>Details</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recent-activity">
+                        <tr>
+                            <td colspan="5" class="empty-state">
+                                <div class="empty-state-icon">📊</div>
+                                <h3>No Recent Activity</h3>
+                                <p>Activity will appear here as users interact with the platform</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="data-table-container">
+                <div class="data-table-header">
+                    <h2>Quick Actions</h2>
+                </div>
+                <div style="padding: 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                    <button class="btn btn-primary" onclick="location.href='admin-lost-found.html'">
+                        🎒 Manage Lost & Found
+                    </button>
+                    <button class="btn btn-danger" onclick="location.href='admin-sos.html'">
+                        🚨 View SOS Alerts
+                    </button>
+                    <button class="btn btn-success" onclick="location.href='admin-campus-map.html'">
+                        🗺️ Manage Campus Map
+                    </button>
+                    <button class="btn btn-primary" onclick="location.href='admin-users.html'">
+                        👥 Manage Users
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../../js/admin-auth.js"></script>
+    <script>
+        // Update navbar with admin name
+        updateAdminNavbar();
+
+        // Load dashboard statistics
+        function loadDashboardStats() {
+            // Get all stored data from localStorage
+            const users = JSON.parse(localStorage.getItem('micamp_users') || '[]');
+            const lostFoundItems = JSON.parse(localStorage.getItem('micamp_lost_found') || '[]');
+            const sosAlerts = JSON.parse(localStorage.getItem('micamp_sos_alerts') || '[]');
+            const rides = JSON.parse(localStorage.getItem('micamp_rides') || '[]');
+            const questions = JSON.parse(localStorage.getItem('micamp_questions') || '[]');
+            const orders = JSON.parse(localStorage.getItem('micamp_orders') || '[]');
+
+            // Update stats
+            document.getElementById('stat-users').textContent = users.length;
+            document.getElementById('stat-lost-found').textContent = lostFoundItems.length;
+            document.getElementById('stat-sos').textContent = sosAlerts.length;
+            document.getElementById('stat-rides').textContent = rides.length;
+            document.getElementById('stat-questions').textContent = questions.length;
+            document.getElementById('stat-orders').textContent = orders.length;
+
+            // Update change indicators
+            const activeLostFound = lostFoundItems.filter(item => item.status !== 'claimed').length;
+            document.getElementById('stat-lost-found-change').textContent = `${activeLostFound} active items`;
+
+            const pendingSOS = sosAlerts.filter(alert => alert.status !== 'resolved').length;
+            document.getElementById('stat-sos-change').textContent = `${pendingSOS} pending`;
+            document.getElementById('stat-sos-change').className = pendingSOS > 0 ? 'stat-card-change negative' : 'stat-card-change';
+
+            const activeRides = rides.filter(ride => ride.status === 'active').length;
+            document.getElementById('stat-rides-change').textContent = `${activeRides} available`;
+
+            const unansweredQuestions = questions.filter(q => q.answers === 0).length;
+            document.getElementById('stat-questions-change').textContent = `${unansweredQuestions} unanswered`;
+
+            // Calculate today's orders total
+            const today = new Date().toDateString();
+            const todayOrders = orders.filter(order => new Date(order.timestamp).toDateString() === today);
+            const todayTotal = todayOrders.reduce((sum, order) => sum + (order.total || 0), 0);
+            document.getElementById('stat-orders-change').textContent = `₹${todayTotal.toFixed(2)} today`;
+
+            // Load recent activity
+            loadRecentActivity();
+        }
+
+        function loadRecentActivity() {
+            // This would be populated with actual activity data
+            // For now, we'll show a sample or empty state
+            const activityTable = document.getElementById('recent-activity');
+
+            // Check if there's any data
+            const hasActivity = false; // This will be true when we have actual data
+
+            if (!hasActivity) {
+                activityTable.innerHTML = `
+                    <tr>
+                        <td colspan="5" style="text-align: center; padding: 3rem; color: #6b7280;">
+                            <div style="font-size: 3rem; margin-bottom: 1rem;">📊</div>
+                            <h3 style="color: #9ca3af; margin-bottom: 0.5rem;">No Recent Activity</h3>
+                            <p>Activity will appear here as users interact with the platform</p>
+                        </td>
+                    </tr>
+                `;
+            }
+        }
+
+        // Load stats on page load
+        loadDashboardStats();
+    </script>
+</body>
+</html>

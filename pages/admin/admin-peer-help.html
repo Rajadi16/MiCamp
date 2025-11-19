@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peer Help Management - MiCamp Admin</title>
+    <link rel="stylesheet" href="../../css/admin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="admin-navbar">
+        <div class="nav-content">
+            <div class="admin-logo">
+                <span class="admin-logo-icon">🎓</span>
+                <span>MICAMP ADMIN</span>
+            </div>
+            <div class="admin-nav-right">
+                <span class="admin-name" id="admin-name">Administrator</span>
+                <button class="admin-logout-btn" onclick="adminLogout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <aside class="admin-sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="admin-dashboard.html"><span class="icon">📊</span><span>Dashboard</span></a></li>
+                <li><a href="admin-users.html"><span class="icon">👥</span><span>Users</span></a></li>
+                <li><a href="admin-lost-found.html"><span class="icon">🎒</span><span>Lost & Found</span></a></li>
+                <li><a href="admin-sos.html"><span class="icon">🚨</span><span>SOS Alerts</span></a></li>
+                <li><a href="admin-rides.html"><span class="icon">🚗</span><span>Ride Pool</span></a></li>
+                <li><a href="admin-peer-help.html" class="active"><span class="icon">🤝</span><span>Peer Help</span></a></li>
+                <li><a href="admin-canteen.html"><span class="icon">🍔</span><span>Canteen</span></a></li>
+                <li><a href="admin-campus-map.html"><span class="icon">🗺️</span><span>Campus Map</span></a></li>
+            </ul>
+        </aside>
+
+        <main class="admin-main">
+            <div class="admin-header">
+                <h1>Peer Help Management</h1>
+                <p>Moderate academic questions and discussions</p>
+            </div>
+
+            <div class="filters">
+                <div class="search-box">
+                    <input type="text" id="search-questions" class="form-input" placeholder="🔍 Search questions...">
+                </div>
+                <select id="filter-subject" class="form-select" style="width: 200px;">
+                    <option value="all">All Subjects</option>
+                    <option value="DSA">DSA</option>
+                    <option value="DBMS">DBMS</option>
+                    <option value="Web Dev">Web Dev</option>
+                    <option value="OS">OS</option>
+                </select>
+            </div>
+
+            <div class="data-table-container">
+                <div class="data-table-header">
+                    <h2>Questions (<span id="questions-count">0</span>)</h2>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Question</th>
+                            <th>Subject</th>
+                            <th>Asked By</th>
+                            <th>Answers</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="questions-table-body">
+                        <tr><td colspan="6" class="empty-state"><div class="empty-state-icon">🤝</div><h3>No Questions Found</h3></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script src="../../js/admin-auth.js"></script>
+    <script>
+        updateAdminNavbar();
+        let allQuestions = JSON.parse(localStorage.getItem('micamp_questions') || '[]');
+
+        if (allQuestions.length === 0) {
+            allQuestions = [{id: 1, question: 'How to implement binary search?', subject: 'DSA', askedBy: 'Student A', answers: 3, status: 'solved'}];
+        }
+
+        function renderQuestions(questions) {
+            const tbody = document.getElementById('questions-table-body');
+            document.getElementById('questions-count').textContent = questions.length;
+            if (questions.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 3rem; color: #6b7280;"><div style="font-size: 3rem; margin-bottom: 1rem;">🤝</div><h3>No Questions Found</h3></td></tr>';
+                return;
+            }
+            tbody.innerHTML = questions.map(q => `
+                <tr>
+                    <td style="max-width: 300px;">${q.question}</td>
+                    <td><span class="badge badge-info">${q.subject}</span></td>
+                    <td>${q.askedBy}</td>
+                    <td>${q.answers || 0}</td>
+                    <td><span class="badge badge-${q.status === 'solved' ? 'success' : 'warning'}">${q.status}</span></td>
+                    <td><button class="btn btn-danger btn-small" onclick="deleteQuestion(${q.id})">Delete</button></td>
+                </tr>
+            `).join('');
+        }
+
+        function filterQuestions() {
+            const search = document.getElementById('search-questions').value.toLowerCase();
+            const subject = document.getElementById('filter-subject').value;
+            let filtered = allQuestions.filter(q =>
+                q.question?.toLowerCase().includes(search) &&
+                (subject === 'all' || q.subject === subject)
+            );
+            renderQuestions(filtered);
+        }
+
+        function deleteQuestion(id) {
+            if (!confirm('Delete this question?')) return;
+            allQuestions = allQuestions.filter(q => q.id !== id);
+            localStorage.setItem('micamp_questions', JSON.stringify(allQuestions));
+            showNotification('Question deleted', 'success');
+            filterQuestions();
+        }
+
+        document.getElementById('search-questions').addEventListener('input', filterQuestions);
+        document.getElementById('filter-subject').addEventListener('change', filterQuestions);
+        renderQuestions(allQuestions);
+    </script>
+</body>
+</html>
