@@ -1,267 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ride Pool - MiCamp</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/features.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ride Pool - MiCamp</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/features.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* minor adjustments */
+    #micamp-ride-map { height:420px; border-radius:8px; margin:20px 0; }
+    #micamp-dynamic-rides .item-card { transition: box-shadow .12s ease; }
+    #micamp-dynamic-rides .item-card:hover { box-shadow: 0 6px 18px rgba(0,0,0,0.06); transform: translateY(-2px); }
+  </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-brand">
-                <div class="logo-icon">🎓</div>
-                <a href="../index.html" style="text-decoration: none;"><span class="logo-text">MICAMP</span></a>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="../index.html#features">Features</a></li>
-                <li><a href="login.html" class="btn-login">Login</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Page Header -->
-    <section class="page-header">
-        <div class="container">
-            <div class="header-icon">🚗</div>
-            <h1>Ride / Vehicle Pool</h1>
-            <p>Share rides with classmates - Eco-friendly & Cost-saving</p>
-        </div>
-    </section>
-
-    <!-- Action Buttons -->
-    <section class="action-section">
-        <div class="container">
-            <div class="action-buttons">
-                <button class="btn btn-primary" onclick="document.getElementById('offerRideModal').style.display='block'">
-                    Offer a Ride
-                </button>
-                <button class="btn btn-secondary">
-                    Find a Ride
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Filter Section -->
-    <section class="filter-section">
-        <div class="container">
-            <div class="filter-bar">
-                <input type="text" class="search-input" placeholder="Search by destination...">
-                <select class="filter-select">
-                    <option value="all">All Times</option>
-                    <option value="morning">Morning (6 AM - 10 AM)</option>
-                    <option value="afternoon">Afternoon (12 PM - 4 PM)</option>
-                    <option value="evening">Evening (4 PM - 8 PM)</option>
-                </select>
-                <select class="filter-select">
-                    <option value="all">All Dates</option>
-                    <option value="today">Today</option>
-                    <option value="tomorrow">Tomorrow</option>
-                    <option value="week">This Week</option>
-                </select>
-            </div>
-        </div>
-    </section>
-
-    <!-- Available Rides -->
-    <section class="items-section">
-        <div class="container">
-            <h2>Available Rides</h2>
-            <div class="items-grid">
-                <!-- Sample Ride -->
-                <div class="item-card">
-                    <div class="ride-header">
-                        <div class="driver-info">
-                            <div class="driver-avatar">👨‍🎓</div>
-                            <div>
-                                <h3>Rajesh Kumar</h3>
-                                <p>⭐ 4.8 Rating</p>
-                            </div>
-                        </div>
-                        <div class="seats-available">
-                            2 seats
-                        </div>
-                    </div>
-                    <div class="ride-details">
-                        <div class="route">
-                            <div class="route-point">
-                                <span class="route-icon">📍</span>
-                                <div>
-                                    <strong>From:</strong> Koramangala
-                                </div>
-                            </div>
-                            <div class="route-line"></div>
-                            <div class="route-point">
-                                <span class="route-icon">📍</span>
-                                <div>
-                                    <strong>To:</strong> RNSIT Campus
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ride-meta">
-                            <p>🕐 Tomorrow, 8:30 AM</p>
-                            <p>🚗 Honda City (KA-01-AB-1234)</p>
-                            <p>💰 ₹50 per person</p>
-                        </div>
-                    </div>
-                    <button class="btn btn-primary btn-small">Request Ride</button>
-                </div>
-
-                <!-- Sample Ride 2 -->
-                <div class="item-card">
-                    <div class="ride-header">
-                        <div class="driver-info">
-                            <div class="driver-avatar">👩‍🎓</div>
-                            <div>
-                                <h3>Priya Sharma</h3>
-                                <p>⭐ 4.9 Rating</p>
-                            </div>
-                        </div>
-                        <div class="seats-available">
-                            3 seats
-                        </div>
-                    </div>
-                    <div class="ride-details">
-                        <div class="route">
-                            <div class="route-point">
-                                <span class="route-icon">📍</span>
-                                <div>
-                                    <strong>From:</strong> Marathahalli
-                                </div>
-                            </div>
-                            <div class="route-line"></div>
-                            <div class="route-point">
-                                <span class="route-icon">📍</span>
-                                <div>
-                                    <strong>To:</strong> RNSIT Campus
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ride-meta">
-                            <p>🕐 Today, 4:30 PM</p>
-                            <p>🚗 Swift Dzire (KA-02-BC-5678)</p>
-                            <p>💰 ₹40 per person</p>
-                        </div>
-                    </div>
-                    <button class="btn btn-primary btn-small">Request Ride</button>
-                </div>
-
-                <!-- Sample Ride 3 -->
-                <div class="item-card">
-                    <div class="ride-header">
-                        <div class="driver-info">
-                            <div class="driver-avatar">👨‍🎓</div>
-                            <div>
-                                <h3>Aditya Singh</h3>
-                                <p>⭐ 5.0 Rating</p>
-                            </div>
-                        </div>
-                        <div class="seats-available">
-                            1 seat
-                        </div>
-                    </div>
-                    <div class="ride-details">
-                        <div class="route">
-                            <div class="route-point">
-                                <span class="route-icon">📍</span>
-                                <div>
-                                    <strong>From:</strong> Whitefield
-                                </div>
-                            </div>
-                            <div class="route-line"></div>
-                            <div class="route-point">
-                                <span class="route-icon">📍</span>
-                                <div>
-                                    <strong>To:</strong> RNSIT Campus
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ride-meta">
-                            <p>🕐 Daily, 8:00 AM</p>
-                            <p>🚗 Hyundai i20 (KA-03-CD-9012)</p>
-                            <p>💰 ₹60 per person</p>
-                        </div>
-                    </div>
-                    <button class="btn btn-primary btn-small">Request Ride</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Offer Ride Modal -->
-    <div id="offerRideModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="document.getElementById('offerRideModal').style.display='none'">&times;</span>
-            <h2>Offer a Ride</h2>
-            <form class="report-form">
-                <div class="form-group">
-                    <label>From (Pickup Location)</label>
-                    <input type="text" placeholder="e.g., Koramangala, Marathahalli" required>
-                </div>
-                <div class="form-group">
-                    <label>To (Drop Location)</label>
-                    <input type="text" placeholder="e.g., RNSIT Campus" required>
-                </div>
-                <div class="form-group">
-                    <label>Date</label>
-                    <input type="date" required>
-                </div>
-                <div class="form-group">
-                    <label>Time</label>
-                    <input type="time" required>
-                </div>
-                <div class="form-group">
-                    <label>Available Seats</label>
-                    <select required>
-                        <option value="">Select seats</option>
-                        <option value="1">1 Seat</option>
-                        <option value="2">2 Seats</option>
-                        <option value="3">3 Seats</option>
-                        <option value="4">4 Seats</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Vehicle Type</label>
-                    <input type="text" placeholder="e.g., Honda City" required>
-                </div>
-                <div class="form-group">
-                    <label>Vehicle Number</label>
-                    <input type="text" placeholder="e.g., KA-01-AB-1234" required>
-                </div>
-                <div class="form-group">
-                    <label>Price per Person (₹)</label>
-                    <input type="number" placeholder="e.g., 50" required>
-                </div>
-                <div class="form-group">
-                    <label>Additional Notes (Optional)</label>
-                    <textarea placeholder="Any specific routes or conditions..." rows="3"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary btn-full">Post Ride</button>
-            </form>
-        </div>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-brand">
+        <div class="logo-icon">🎓</div>
+        <a href="../index.html" style="text-decoration:none;"><span class="logo-text">MICAMP</span></a>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="../index.html#features">Features</a></li>
+        <li><a href="login.html" class="btn-login">Login</a></li>
+      </ul>
     </div>
+  </nav>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <div class="logo-icon">🎓</div>
-                    <span class="logo-text">MICAMP</span>
-                    <p>Where Campus Meets Technology</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 MiCamp. Built for RNSIT Community.</p>
-            </div>
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <div class="header-icon">🚗</div>
+      <h1>Ride / Vehicle Pool</h1>
+      <p>Share rides with classmates - Eco-friendly & Cost-saving</p>
+    </div>
+  </section>
+
+  <!-- Action Buttons -->
+  <section class="action-section">
+    <div class="container">
+      <div class="action-buttons">
+        <button class="btn btn-primary" onclick="document.getElementById('offerRideModal').style.display='block'">
+          Offer a Ride
+        </button>
+        <button class="btn btn-secondary" onclick="document.getElementById('micamp-search-nearby').click()">
+          Find a Ride
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter Section -->
+  <section class="filter-section">
+    <div class="container">
+      <div class="filter-bar">
+        <input type="text" class="search-input" placeholder="Search by destination..." id="micamp-search-text">
+        <select class="filter-select" id="micamp-time-filter">
+          <option value="all">All Times</option>
+          <option value="morning">Morning (6 AM - 10 AM)</option>
+          <option value="afternoon">Afternoon (12 PM - 4 PM)</option>
+          <option value="evening">Evening (4 PM - 8 PM)</option>
+        </select>
+        <select class="filter-select" id="micamp-date-filter">
+          <option value="all">All Dates</option>
+          <option value="today">Today</option>
+          <option value="tomorrow">Tomorrow</option>
+          <option value="week">This Week</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map + dynamic rides -->
+  <section class="items-section">
+    <div class="container" style="display:flex;gap:20px;align-items:flex-start;">
+      <div style="flex:1">
+        <div id="micamp-ride-map">Loading map…</div>
+        <div style="margin-top:8px;">
+          <button id="micamp-search-nearby" class="btn btn-secondary">Search rides near map center</button>
+          <span style="margin-left:8px;color:#666">Drag the map then click Search</span>
         </div>
-    </footer>
+      </div>
 
+      <div style="width:420px;">
+        <h2>Available Rides</h2>
+        <!-- dynamic list replaces static samples -->
+        <div id="micamp-dynamic-rides"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Offer Ride Modal (unchanged structure, script will read the form) -->
+  <div id="offerRideModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="document.getElementById('offerRideModal').style.display='none'">&times;</span>
+      <h2>Offer a Ride</h2>
+      <form class="report-form">
+        <div class="form-group">
+          <label>From (Pickup Location)</label>
+          <input type="text" placeholder="e.g., Koramangala, Marathahalli or 12.90223,77.51851" required>
+        </div>
+        <div class="form-group">
+          <label>To (Drop Location)</label>
+          <input type="text" placeholder="e.g., RNSIT Campus or 12.90300,77.51700" required>
+        </div>
+        <div class="form-group">
+          <label>Date</label>
+          <input type="date" required>
+        </div>
+        <div class="form-group">
+          <label>Time</label>
+          <input type="time" required>
+        </div>
+        <div class="form-group">
+          <label>Available Seats</label>
+          <select required>
+            <option value="">Select seats</option>
+            <option value="1">1 Seat</option>
+            <option value="2">2 Seats</option>
+            <option value="3">3 Seats</option>
+            <option value="4">4 Seats</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Vehicle Type</label>
+          <input type="text" placeholder="e.g., Honda City" required>
+        </div>
+        <div class="form-group">
+          <label>Vehicle Number</label>
+          <input type="text" placeholder="e.g., KA-01-AB-1234" required>
+        </div>
+        <div class="form-group">
+          <label>Price per Person (₹)</label>
+          <input type="number" placeholder="e.g., 50" required>
+        </div>
+        <div class="form-group">
+          <label>Additional Notes (Optional)</label>
+          <textarea placeholder="Any specific routes or conditions..." rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full">Post Ride</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="logo-icon">🎓</div>
+          <span class="logo-text">MICAMP</span>
+          <p>Where Campus Meets Technology</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 MiCamp. Built for RNSIT Community.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- integration script -->
+  <script src="/js/ridepool-integration.js"></script>
 </body>
 </html>

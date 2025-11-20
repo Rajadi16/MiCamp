@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: micamp-backend
+    env: node
+    region: singapore
+    plan: free
+    buildCommand: cd backend && npm install && npm run build
+    startCommand: cd backend && npm start
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: NODE_ENV
+        value: production
+      - key: CLIENT_ORIGIN
+        sync: false
+      - key: CAMPUS_CENTER_LAT
+        value: 12.923492
+      - key: CAMPUS_CENTER_LNG
+        value: 77.499733
