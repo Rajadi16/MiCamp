@@ -1,281 +1,177 @@
-# MiCamp - Smart Campus Utility Portal
+<div align="center">
+  <h1>🎓 MiCamp</h1>
+  <p><strong>A Smart Campus Utility Portal designed for RNSIT</strong><br/><em>Where Campus Meets Technology</em></p>
 
-**Where Campus Meets Technology**
+  <p>
+    <a href="https://mi-camp.vercel.app/" target="_blank">
+      <img src="https://img.shields.io/badge/Website-Live-brightgreen.svg?style=for-the-badge" alt="Website Live" />
+    </a>
+    <a href="https://github.com/Rajadi16/MiCamp/blob/main/LICENSE">
+      <img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" alt="License MIT" />
+    </a>
+    <img src="https://img.shields.io/badge/Frontend-HTML5%20%7C%20CSS3%20%7C%20Vanilla%20JS-orange?style=for-the-badge" alt="Frontend: HTML JS CSS" />
+    <img src="https://img.shields.io/badge/Backend-Node.js%20%2B%20Express-success?style=for-the-badge" alt="Backend: Node" />
+  </p>
 
-MiCamp is an integrated smart campus portal designed for RNSIT (RNS Institute of Technology) that combines multiple essential services into one platform.
+  <p>
+    <a href="#-about-the-project">About</a> •
+    <a href="#-key-features">Features</a> •
+    <a href="#-tech-stack">Tech Stack</a> •
+    <a href="#-getting-started">Installation</a> •
+    <a href="#-deployment">Deployment</a>
+  </p>
+</div>
 
-## 🎯 Features
+<br/>
 
-- 🗺️ **Campus Map + Navigation** - Find classrooms, labs, and facilities easily
-- 🎒 **Lost & Found System** - Post and search for lost items with photo matching
-- 🚗 **Ride/Vehicle Pool** - Share rides with classmates
-- 🍔 **Canteen Menu + Pre-Order** - View menu, pre-order food, skip queues
-- 🤝 **Peer Help / Mentor System** - Get academic help from seniors and teachers
-- 🚨 **Emergency SOS** - One-tap emergency alerts with live location
+## 🌟 About The Project
 
-## 🛠️ Tech Stack
+MiCamp is an integrated smart campus portal designed specifically for **RNS Institute of Technology (RNSIT)** that brings together multiple essential campus services into a single, cohesive smart platform. 
 
-### Frontend
-- HTML5, CSS3, JavaScript (Vanilla)
-- Modern responsive design
-- No build tools required
-- Works on any web server
+Our goal is to save time, improve campus safety, encourage student collaboration, and promote an eco-friendly smart campus initiative while reducing manual paperwork.
 
-### Backend
-- Node.js + Express
-- TypeScript
-- RESTful APIs + Server-Sent Events for live updates
-- In-memory storage (switchable to DB later)
+### 📸 Preview
 
-## 📁 Project Structure
+#### Homepage
+![MiCamp Homepage](./assets/screenshots/homepage.png)
 
-```
-MiCamp/
-├── index.html              # Homepage
-├── css/                    # All stylesheets
-│   ├── style.css          # Main styles
-│   ├── auth.css           # Authentication pages
-│   ├── features.css       # Feature pages
-│   ├── canteen.css        # Canteen page
-│   └── sos.css            # SOS page
-├── js/                     # All JavaScript
-│   ├── main.js            # Main functionality
-│   ├── auth.js            # Authentication
-│   ├── canteen.js         # Canteen functionality
-│   ├── sos.js             # SOS functionality
-│   └── campus-map.js      # Live campus map + tracking
-├── backend/                # Node.js + Express backend
-│   ├── src/               # TypeScript source
-│   ├── env.example        # Sample environment variables
-│   └── package.json
-├── pages/                  # All website pages
-│   ├── login.html
-│   ├── register.html
-│   ├── campus-map.html
-│   ├── lost-found.html
-│   ├── canteen.html
-│   ├── ride-pool.html
-│   ├── peer-help.html
-│   └── sos.html
-└── README.md
-```
-
-## 🚀 Getting Started
-
-### Prerequisites
-- **Node.js** (v16 or higher) - [Download here](https://nodejs.org/)
-- **Python** (v3.7 or higher) - [Download here](https://python.org/)
-
-### Quick Start - Easiest Method! 🎯
-
-#### Option 1: Start Everything with One Command
-**Windows:**
-```bash
-start-all.bat
-```
-This automatically starts both backend and frontend servers!
-
-#### Option 2: Start Separately
-**Terminal 1 - Start Backend:**
-```bash
-start-backend.bat
-# Or manually:
-cd backend
-npm install
-npm run dev
-```
-
-**Terminal 2 - Start Frontend:**
-```bash
-start-frontend.bat
-# Or manually:
-python -m http.server 8080
-```
-
-Then open: **http://localhost:8080** in your browser
-
-### Manual Setup (Step-by-Step)
-
-#### 1️⃣ Backend Setup
-
-1. **Install dependencies:**
-   ```bash
-   cd backend
-   npm install
-   ```
-
-2. **Configure environment variables:**
-   - Copy `env.example` to `.env`
-   - The default `.env` is already configured for local development
-   ```env
-   PORT=4000
-   CLIENT_ORIGIN=http://localhost:8080
-   CAMPUS_CENTER_LAT=12.923492
-   CAMPUS_CENTER_LNG=77.499733
-   ```
-
-3. **Start the backend server:**
-   ```bash
-   npm run dev          # Development mode (auto-restart on changes)
-   # OR
-   npm run build        # Build for production
-   npm start            # Run production build
-   ```
-
-   Backend will run on: **http://localhost:4000**
-
-#### 2️⃣ Frontend Setup
-
-**Option A: Using Python (Recommended)**
-```bash
-cd MiCamp
-python -m http.server 8080
-```
-
-**Option B: Using Node.js**
-```bash
-npm install -g http-server
-cd MiCamp
-http-server -p 8080
-```
-
-**Option C: VS Code Live Server**
-1. Install "Live Server" extension
-2. Right-click `index.html`
-3. Click "Open with Live Server"
-
-Frontend will run on: **http://localhost:8080**
-
-### 🔗 API Configuration
-
-The frontend automatically connects to the backend via [js/config.js](js/config.js):
-- **Development:** Uses `http://localhost:4000`
-- **Production:** Uses your deployed backend URL (update after deployment)
-
-To change the backend URL, edit [js/config.js](js/config.js):
-```javascript
-window.MICAMP_API_BASE_URL = window.location.hostname === 'localhost'
-  ? 'http://localhost:4000'                          // Local development
-  : 'https://your-backend.onrender.com';             // Production
-```
-
-### 📡 Available API Endpoints
-
-- `GET /health` - Health check endpoint
-- `GET /api/map/locations` - Get all campus locations
-- `POST /api/map/admin/locations` - Add new location (admin)
-- `GET /api/rides/nearby` - Get nearby rides
-- `POST /api/rides` - Create new ride
-- `POST /api/live-location` - Update live location
-- `GET /api/live-location/stream` - SSE stream for live updates
-
-## 🌐 Deployment
-
-### 🚀 Recommended: Render (Backend) + Vercel (Frontend)
-
-This is the **easiest and FREE** way to deploy your full-stack application!
-
-#### Backend Deployment on Render
-
-1. **Push your code to GitHub**
-2. **Sign up at [render.com](https://render.com)** with GitHub
-3. **Create a new Web Service**
-4. **Connect your MiCamp repository**
-5. **Configure:**
-   - Build Command: `cd backend && npm install && npm run build`
-   - Start Command: `cd backend && npm start`
-   - Add environment variables (see [RENDER_QUICK_START.md](RENDER_QUICK_START.md))
-6. **Deploy!** Your backend will be live at `https://your-app.onrender.com`
-
-📖 **Detailed Guide:** See [RENDER_QUICK_START.md](RENDER_QUICK_START.md)
-
-#### Frontend Deployment on Vercel
-
-1. **Sign up at [vercel.com](https://vercel.com)** with GitHub
-2. **Import your MiCamp repository**
-3. **Deploy!** Your frontend will be live at `https://your-app.vercel.app`
-4. **Update API URL:** Edit [js/config.js](js/config.js) with your Render backend URL
-
-📖 **Complete Deployment Guide:** See [DEPLOYMENT.md](DEPLOYMENT.md)
-
-### Alternative Hosting Options
-
-#### GitHub Pages (Frontend Only - Free)
-
-1. Push code to GitHub repository
-2. Go to Settings > Pages
-3. Select branch (main) and root folder
-4. Live at: `https://username.github.io/micamp/`
-
-⚠️ Note: GitHub Pages only hosts static files (frontend). You'll need separate backend hosting.
-
-#### Netlify (Frontend Only - Free)
-
-1. Go to [netlify.com](https://netlify.com)
-2. Drag & drop MiCamp folder or connect GitHub
-3. Instant deployment with custom domain
-4. Free SSL certificate included
-
-#### College Server (Apache/cPanel)
-
-**For Apache Server:**
-```bash
-# Upload via FTP/SFTP to:
-/var/www/html/micamp/
-
-# Set permissions:
-chmod -R 755 /var/www/html/micamp
-```
-
-**For cPanel:**
-1. Login to cPanel
-2. File Manager → `public_html`
-3. Upload MiCamp folder
-4. Access at: `http://yourdomain.ac.in/micamp/`
-
-⚠️ Backend requires Node.js support on the server.
-
-## 📋 Deployment Checklist
-
-### Backend (Render)
-- [ ] Backend deployed to Render
-- [ ] Environment variables configured
-- [ ] Backend health check passing (`/health`)
-- [ ] Note your backend URL
-
-### Frontend (Vercel)
-- [ ] Update [js/config.js](js/config.js) with production backend URL
-- [ ] Frontend deployed to Vercel
-- [ ] All pages loading correctly
-- [ ] Test all features (map, rides, canteen, etc.)
-
-### Final Steps
-- [ ] Update `CLIENT_ORIGIN` in Render with Vercel URL
-- [ ] Test API calls from frontend
-- [ ] Check mobile responsiveness
-- [ ] Verify all features work in production
-- [ ] Update contact information if needed
-
-## 👥 Team
-
-- Shashikanth Gidaganti (1RN23CS258)
-- Pranathi D (1RN23CS145)
-- Neethu B Krishna (1RN23CS131)
-- Rajput Aditya Singh (1RN23CS163)
-
-## 📝 License
-
-MIT License - See LICENSE file for details
-
-## 🔮 Future Enhancements
-
-- AI chat assistant for student queries
-- Payment system integration (UPI, cards)
-- Mobile app with push notifications
-- Face recognition security for SOS
-- Advanced analytics dashboard
-- Persistent storage for live location history
+#### Features Layout
+![MiCamp Features](./assets/screenshots/features.png)
 
 ---
 
-Built with ❤️ for RNSIT Community
+## ✨ Key Features
+
+1. **🗺️ Campus Map + Navigation:** 
+   Find classrooms, labs, and facilities easily. Live tracking included so you never get lost on campus again.
+   
+2. **🚗 Ride / Vehicle Pool:** 
+   Share rides with classmates for eco-friendly commuting and cost-saving solutions.
+   
+3. **🎒 Lost & Found System:** 
+   Report or search for lost items efficiently with photo matching capabilities.
+   
+4. **🍔 Canteen Menu + Pre-Order:** 
+   View interactive menus, pre-order food, skip long physical queues, and process online payments smoothly.
+   
+5. **🤝 Peer Help / Mentor System:** 
+   A collaborative zone to get academic help from peers, seniors, and teachers. Post doubts and receive answers.
+   
+6. **🚨 Emergency SOS:** 
+   One-tap emergency alerts pushing live location directly to campus security personnel for immediate assistance.
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+- **Languages:** HTML5, CSS3, JavaScript (Vanilla ES6+)
+- **Architecture:** Modern responsive design (Mobile First)
+- **Tooling:** No explicit build tools required; extremely lightweight.
+
+### Backend
+- **Environment:** Node.js + Express framework
+- **Languages:** TypeScript
+- **Features:** RESTful APIs + Server-Sent Events (SSE) for live mapping updates
+- **Database:** Fast in-memory volatile storage (easily switchable to MongoDB/PostgreSQL later)
+
+---
+
+## 🚀 Getting Started
+
+To get your development environment running locally, follow these steps.
+
+### Prerequisites
+
+- **Node.js** (v16 or higher) - [Download](https://nodejs.org/)
+- **Python** (v3.7 or higher) - [Download](https://python.org/) (Used for quick frontend serving)
+- **Git** - [Download](https://git-scm.com/)
+
+### Installation 
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Rajadi16/MiCamp.git
+   cd MiCamp
+   ```
+
+2. **Easiest Start (One Command for Windows):**
+   ```bash
+   start-all.bat
+   ```
+   *This single script automatically initiates both your frontend and backend environments side-by-side.*
+
+#### Manual Setup Alternative
+
+**Backend Setup:**
+```bash
+cd backend
+npm install
+
+# Copy config templates
+cp env.example .env
+
+# Run Development Server
+npm run dev
+```
+
+**Frontend Setup (in a new terminal):**
+```bash
+# Recommended Python server
+cd MiCamp
+python -m http.server 8080
+```
+Then simply open your browser to **http://localhost:8080**.
+
+---
+
+## 📡 API Architecture Highlights
+
+MiCamp's API handles various complex tasks over simple endpoints.
+
+- `GET /health` – Returns service health status.
+- `GET /api/map/locations` – Fetch spatial campus data.
+- `POST /api/rides` – Create secure peer rides.
+- `GET /api/live-location/stream` – **SSE Stream** for live campus movement logic.
+
+*Note: The frontend config automatically attaches to `localhost:4000` via `/js/config.js` while working securely in production contexts over HTTPS.*
+
+---
+
+## 🌐 Deployment
+
+MiCamp is structured for incredibly smooth cloud deployments. 
+
+- **Backend:** Highly recommended to host on **[Render](https://render.com/)**, leveraging their free web services. Detailed documentation is provided in our [Render Quick Start Guide](RENDER_QUICK_START.md).
+- **Frontend:** Perfect for modern edge networks like **[Vercel](https://vercel.com/)**.
+- **Self-Hosting:** Usable over standard `cPanel` or `Apache2` environments provided you establish adequate Node.js proxies.
+
+To see step-by-step CI/CD procedures, refer to our [Deployment Documentation](DEPLOYMENT.md).
+
+---
+
+## 🔮 Future Enhancements
+
+- **AI Chat Assistant:** Handle generic student queries rapidly.
+- **Direct UPI integration:** Secure seamless canteen checkout.
+- **PWA Conversion:** Fully installable mobile application with Background Push Notifications.
+- **Biometric API hooks:** Integrating facial recognition directly into emergency protocols.
+
+---
+
+## 👥 The Team
+
+Brought to life by the brilliant students of **RNSIT**:
+- **Shashikanth Gidaganti** (1RN23CS258)
+- **Pranathi D** (1RN23CS145)
+- **Neethu B Krishna** (1RN23CS131)
+- **Rajput Aditya Singh** (1RN23CS163)
+
+## 📝 License
+
+Distributed under the **MIT License**. See `LICENSE` for more information.
+
+<br/>
+<div align="center">
+  <i>Built with ❤️ for the RNSIT Community</i>
+</div>
